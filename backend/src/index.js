@@ -87,3 +87,5 @@ app.listen(PORT, '0.0.0.0', () => {
 });
 
 module.exports = app;
+// Untuk Vercel serverless
+module.exports = app;
