@@ -12,10 +12,12 @@
 
 const path = require('path');
 const fs = require('fs');
-const { DatabaseSync } = require('node:sqlite');
-
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '../../data/damai.db');
-let db = null;
+// Menjadi (pakai Turso):
+const { createClient } = require('@libsql/client');
+const db = createClient({
+  url: 'libsql://damai-kingjonu-hub.aws-us-east-2.turso.io',
+  authToken: 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODIxNDk5MjgsImlkIjoiMDE5ZWYwNjMtNDQwMS03NmIzLTk1ZWMtMWI2NzM3OTFhOTJlIiwicmlkIjoiNTg2MDNmNjQtMTk0MC00ZGQ0LTgwNTUtYWQwNWM4YTkyY2FiIn0.ufN2CqOFRgSquNJR1k0dVOsH33wUIjSXQom2wc_9-3IymkoaWZ1B1XDqy-IyP2VzFI7qoaGQF5wajA9bBG0dDA'
+});
 
 /**
  * Polyfill for better-sqlite3's db.transaction(fn) API.
